@@ -17,8 +17,11 @@ Penyelesaian :
 14 14 14 2 5 bash /home/justfachry/modul1/soal1.sh
 ```
 2. Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv. Laporan yang diminta berupa:
+
 a. Tentukan negara dengan penjualan(quantity) terbanyak pada tahun 2012.
+
 b. Tentukan tiga product line yang memberikan penjualan(quantity) terbanyak pada soal poin a.
+
 c. Tentukan tiga product yang memberikan penjualan(quantity) terbanyak berdasarkan tiga product line yang didapatkan pada soal poin b.
 
 Penyelesaian :
@@ -143,9 +146,13 @@ END {
 
 ```
 3. Buatlah sebuah script bash yang dapat menghasilkan password secara acak sebanyak 12 karakter yang terdapat huruf besar, huruf kecil, dan angka. Password acak tersebut disimpan pada file berekstensi .txt dengan ketentuan pemberian nama sebagai berikut:
+
 a. Jika tidak ditemukan file password1.txt maka password acak tersebut disimpan pada file bernama password1.txt
+
 b. Jika file password1.txt sudah ada maka password acak baru akan disimpan pada file bernama password2.txt dan begitu seterusnya.
+
 c. Urutan nama file tidak boleh ada yang terlewatkan meski filenya dihapus.
+
 d. Password yang dihasilkan tidak boleh sama.
 	
 Penyelesaian :
@@ -178,15 +185,38 @@ LC_CTYPE=C tr -dc A-Za-z0-9 < /dev/urandom | head -c 12 | xargs > $file.txt
 - Jika file password1.txt sudah ada maka masuk kondisi if dan dilakukan loop while menggunakan Boolean -e untuk mengecek  file $file$a.txt, jika file sudah ada maka a di-increment
 - Saat sudah keluar dari percabangan dibuatlah random 12 char dan dimasukkan $file yang sudah dirubah di dalam perulangan 
 4. Lakukan backup file syslog setiap jam dengan format nama file “jam:menit tanggal-bulan-tahun”. Isi dari file backup terenkripsi dengan konversi huruf (string manipulation) yang disesuaikan dengan jam dilakukannya backup misalkan sebagai berikut:
+
 a. Huruf b adalah alfabet kedua, sedangkan saat ini waktu menunjukkan pukul 12, sehingga huruf b diganti dengan huruf alfabet yang memiliki urutan ke 12+2 = 14.
+
 b. Hasilnya huruf b menjadi huruf n karena huruf n adalah huruf ke empat belas, dan seterusnya. 
+
 c. setelah huruf z akan kembali ke huruf a
+
 d. Backup file syslog setiap jam.
+
 e. dan buatkan juga bash script untuk dekripsinya.
+
 5. Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
+
 a. Tidak mengandung string “sudo”, tetapi mengandung string “cron”, serta buatlah pencarian stringnya tidak bersifat case sensitive, sehingga huruf kapital atau tidak, tidak menjadi masalah.
+
 b. Jumlah field (number of field) pada baris tersebut berjumlah kurang dari 13.
+
 c. Masukkan record tadi ke dalam file logs yang berada pada direktori /home/[user]/modul1.
+
 d. Jalankan script tadi setiap 6 menit dari menit ke 2 hingga 30, contoh 13:02, 13:08, 13:14, dst.
 
 Penyelesaian :
+- Buat file soal5.sh dengan mengetikkan nano soal5.sh
+- Karena string tidak bersifat case sensitive, maka kita menginputkan "cron" dan "CRON" agar dapat mendapatkan hasil keduanya
+- Karena string tidak boleh mengandung "sudo", maka kita tuliskan "!/sudo/" pada scriptnya
+- Lalu beri perintah NF<13 agar number of field nya tidak melebihi 13
+```bash
+awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13' >> /home/justfachry/modul1/5.log
+```
+- Setelah itu, buat pengaturan crontab untuk menjalankan script tersebut sesuai perintah
+
+```bash
+2-30/6 * * * * bash /home/justfachry/modul1/soal5.sh
+```
+- Maka script akan dijalankan setiap 6 menit pada menit ke 2 hingga 30 dan data akan tersimpan ke dalam file 5.log
