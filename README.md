@@ -1,17 +1,21 @@
 # SoalShift_modul1_F05
 
 1. Anda diminta tolong oleh teman anda untuk mengembalikan filenya yang telah dienkripsi oleh seseorang menggunakan bash script, file yang dimaksud adalah nature.zip. Karena terlalu mudah kalian memberikan syarat akan membuka seluruh file tersebut jika pukul 14:14 pada tanggal 14 Februari atau hari tersebut adalah hari jumat pada bulan Februari.
+
 Hint: Base64, Hexdump
-	Penyelesaian :
-Unduh file nature.zip
-Lalu masuk ke folder yang berisi file nature.zip lalu unzip file tersebut dengan mengetikkan “unzip nature.zip”
-Lalu buat file soal1.sh dengan mengetikkan “nano soal1.sh” dan buat program untuk mengdekripsikan file yang ada di dalam folder nature
+
+Penyelesaian :
+- Unduh file nature.zip
+- Lalu masuk ke folder yang berisi file nature.zip lalu unzip file tersebut dengan mengetikkan “unzip nature.zip”
+- Lalu buat file soal1.sh dengan mengetikkan “nano soal1.sh” dan buat program untuk mengdekripsikan file yang ada di dalam folder nature
+
 ![test image1](https://github.com/justfachry/SoalShift_modul1_F05/blob/master/nomor1-1.png)
 
-Lalu buka pengaturan crontab dengan mengetikkan “crontab -e”
-Setting crontab agar mengdekripsi file tersebut sesuai waktu yang ditentukan
+ - Lalu buka pengaturan crontab dengan mengetikkan “crontab -e”
+ - Setting crontab agar mengdekripsi file tersebut sesuai waktu yang ditentukan
+```bash
 14 14 14 2 5 bash /home/justfachry/modul1/soal1.sh
-
+```
 2. Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv. Laporan yang diminta berupa:
 a. Tentukan negara dengan penjualan(quantity) terbanyak pada tahun 2012.
 b. Tentukan tiga product line yang memberikan penjualan(quantity) terbanyak pada soal poin a.
