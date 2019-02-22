@@ -6,17 +6,7 @@ Hint: Base64, Hexdump
 Unduh file nature.zip
 Lalu masuk ke folder yang berisi file nature.zip lalu unzip file tersebut dengan mengetikkan “unzip nature.zip”
 Lalu buat file soal1.sh dengan mengetikkan “nano soal1.sh” dan buat program untuk mengdekripsikan file yang ada di dalam folder nature
-
-
-
-
-
-
-
-
-
-
-
+![test image1](https://github.com/justfachry/SoalShift_modul1_F05/blob/master/nomor1-1.png)
 
 Lalu buka pengaturan crontab dengan mengetikkan “crontab -e”
 Setting crontab agar mengdekripsi file tersebut sesuai waktu yang ditentukan
