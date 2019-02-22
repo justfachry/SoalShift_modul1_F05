@@ -22,7 +22,7 @@ b. Tentukan tiga product line yang memberikan penjualan(quantity) terbanyak pada
 c. Tentukan tiga product yang memberikan penjualan(quantity) terbanyak berdasarkan tiga product line yang didapatkan pada soal poin b.
 
 Penyelesaian :
-2a
+
 ```bash
 BEGIN {
         FS = ","
@@ -57,7 +57,7 @@ END {
 }
 
 ```
-- Pertama atur pada bash script agar mengubah inputan koma(‘,’) menjadi whitespace karena file yang diakses adalah tipe csv
+- Pada soal 2a, Pertama atur pada bash script agar mengubah inputan koma(‘,’) menjadi whitespace karena file yang diakses adalah tipe csv
 - Deklarasikan variabel  MAX_1 dan MAX_2 serta Country_1 dan Country_2 pada bagian BEGIN
 - Pada bagian if, menggunakan NR>1 agar header tidak ikut	tersimpan dan terbawa saat di print
 - Karena awk secara default akan mengakses tiap barisnya, maka tidak perlu looping atau sebagainya	
