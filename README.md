@@ -196,6 +196,37 @@ d. Backup file syslog setiap jam.
 
 e. dan buatkan juga bash script untuk dekripsinya.
 
+Penyelesaian:
+- Ambil waktu sekarang dengan date dan sesuaikan dengan format yang ditentukan
+- Lalu ambil nilai jam pada saat itu untuk menjadi key
+- ```bash cat /var/log/syslog``` untuk mengambil data dari syslog
+- Lalu encrypt file syslog dengan menggunakan key dan disimpan dengan format nama “jam:menit tanggal-bulan-tahun”
+```bash
+#!/bin/bash
+
+besar=ABCDEFGHIJKLMNOPQRSTUVWXYZ
+kecil=abcdefghijklmnopqrstuvwxyz
+
+waktu=`date '+%H:%M %d-%m-%Y'`
+jam=`date '+%H'`
+
+cat /var/log/syslog | tr "${kecil:0:26}" "${kecil:${jam}:26}" | tr "${besar:0:26}" "${besar:${jam}:26}" > ~/modul1/"$waktu"
+```
+- Lalu buat decryptnya dengan mengambil jam dari nama file sebagai key
+- Lakukan dekripsi dengan menggunakan key yang telah didapat dan kemudian disimpan
+```bash
+#!/bin/bash
+
+besar=ABCDEFGHIJKLMNOPQRSTUVWXYZ
+kecil=abcdefghijklmnopqrstuvwxyz
+
+n=`echo "$1" | awk -F: '{print $i}'`
+
+cd ~/modul1
+
+tr "${kecil:n}${kecil:0:n}${besar:n}${besar:0:n}" "$kecil$besar" <<< `cat "$1"` > ~/modul1/"$1_decrypt"
+
+```
 5. Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
 
 a. Tidak mengandung string “sudo”, tetapi mengandung string “cron”, serta buatlah pencarian stringnya tidak bersifat case sensitive, sehingga huruf kapital atau tidak, tidak menjadi masalah.
