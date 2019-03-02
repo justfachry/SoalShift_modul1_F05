@@ -261,8 +261,32 @@ Soal Latihan
 
 
 1. Buatlah sebuah program menggunakan bash script untuk menentukan apakah sebuah string yang Anda diinputkan merupakan palindrom atau bukan. Contoh: malam = palindrom, makan != palindrom.
+Penyelesaian :
+```bash
+#!/bin/bash
 
+read str
+len=${#str}
+i=0
+count=0
+j=`expr $len - 1`
 
+while [ $i -le $j ]
+do
+a=${str:i:1}
+b=${str:j:1}
+  if [ ${str:i:1} != ${str:j:1} ] 
+  then
+     echo "$str != palindrome"
+     exit 0
+  fi
+  i=`expr $i + 1`
+  j=`expr $j - 1`
+  count=`expr $count + 1`
+done
+echo "$str = palindrome"
+
+```
 2. Buatlah sebuah task scheduling menggunakan crontab dan sebuah bash script untuk memindahkan semua file mp3 ke /home/<user>/Music, semua file mp4 ke /home/<user>/Videos, dan semua file jpg ke /home/<user>/Pictures setiap satu menit. Awalnya, semua file mp3, mp4, dan jpg tersebut terletak di /home/<user>/Documents.
 
 Penyelesaian :
@@ -279,4 +303,9 @@ mv /home/justfachry/Dokumen/*.jpg /home/justfachry/Gambar
 * * * * * bash /home/justfachry/Dokumen/nomor2.sh
 ```
 3. Buatlah sebuah program awk yang bisa menampilkan user yang melakukan proses. Tapi karena kemungkinan besar jumlah barisnya akan sangat banyak, maka tampilkan secara distinct (tidak ada user yang sama muncul lebih dari satu kali). Jika sudah bisa, coba masukkan hasilnya ke dalam file user.log (Hint: menggunakan pipe dan command ps)
-
+Penyelesaian :
+```bash
+ps aux | awk '{print $1}' | sort -u > user.log
+```
+- print $1 karen yang ingin diambil hanya usernya saja
+- sort -u agar user bersifat unik
