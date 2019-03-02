@@ -227,6 +227,11 @@ cd ~/modul1
 tr "${kecil:n}${kecil:0:n}${besar:n}${besar:0:n}" "$kecil$besar" <<< `cat "$1"` > ~/modul1/"$1_decrypt"
 
 ```
+-Lalu atur dicrontab agar data di-backup setiap jam
+```bash
+0 */1 * * * bash /home/justfachry/modul1/soal4.sh
+```
+
 5. Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
 
 a. Tidak mengandung string “sudo”, tetapi mengandung string “cron”, serta buatlah pencarian stringnya tidak bersifat case sensitive, sehingga huruf kapital atau tidak, tidak menjadi masalah.
@@ -251,3 +256,27 @@ awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13' >> /home/justfach
 2-30/6 * * * * bash /home/justfachry/modul1/soal5.sh
 ```
 - Maka script akan dijalankan setiap 6 menit pada menit ke 2 hingga 30 dan data akan tersimpan ke dalam file 5.log
+
+Soal Latihan
+
+
+1. Buatlah sebuah program menggunakan bash script untuk menentukan apakah sebuah string yang Anda diinputkan merupakan palindrom atau bukan. Contoh: malam = palindrom, makan != palindrom.
+
+
+2. Buatlah sebuah task scheduling menggunakan crontab dan sebuah bash script untuk memindahkan semua file mp3 ke /home/<user>/Music, semua file mp4 ke /home/<user>/Videos, dan semua file jpg ke /home/<user>/Pictures setiap satu menit. Awalnya, semua file mp3, mp4, dan jpg tersebut terletak di /home/<user>/Documents.
+
+Penyelesaian :
+- Buatlah sebuah bash script dengan mengetikkan nano nomor2.sh
+- Lalu buatlah sebuah perintah untuk memindahkan file sesuai dengan format yang telah ditentukan
+
+```bash
+mv /home/justfachry/Dokumen/*.mp3 /home/justfachry/Musik
+mv /home/justfachry/Dokumen/*.mp4 /home/justfachry/Video
+mv /home/justfachry/Dokumen/*.jpg /home/justfachry/Gambar
+```
+- Lalu atur di crontab agar file dipindahkan setiap satu menit
+```bash
+* * * * * bash /home/justfachry/Dokumen/nomor2.sh
+```
+3. Buatlah sebuah program awk yang bisa menampilkan user yang melakukan proses. Tapi karena kemungkinan besar jumlah barisnya akan sangat banyak, maka tampilkan secara distinct (tidak ada user yang sama muncul lebih dari satu kali). Jika sudah bisa, coba masukkan hasilnya ke dalam file user.log (Hint: menggunakan pipe dan command ps)
+
