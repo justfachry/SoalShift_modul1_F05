@@ -307,5 +307,5 @@ Penyelesaian :
 ```bash
 ps aux | awk '{print $1}' | sort -u > user.log
 ```
-- print $1 karen yang ingin diambil hanya usernya saja
+- print $1 karena yang ingin diambil hanya usernya saja
 - sort -u agar user bersifat unik
